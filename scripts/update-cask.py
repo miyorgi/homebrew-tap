@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Update the cask from the published, signed macOS release manifest."""
 import argparse
-import hashlib
 import json
 from pathlib import Path
 import re

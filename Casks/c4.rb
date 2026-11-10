@@ -19,8 +19,6 @@ cask "c4" do
 
   binary "miyorgi-c4-#{version}-darwin-#{arch}/bin/miyorgi"
 
-  zap :not_required
-
   caveats <<~EOS
     In your project directory, install the bundled authoring skill:
       miyorgi c4 setup
