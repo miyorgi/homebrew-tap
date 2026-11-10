@@ -1,0 +1,38 @@
+name: Verify tap
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: macos-15
+    timeout-minutes: 15
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Install the checked-out cask
+        run: |
+          brew tap miyorgi/tap "$GITHUB_WORKSPACE"
+          git -C "$(brew --repository miyorgi/tap)" checkout "$GITHUB_SHA"
+          brew audit --cask miyorgi/tap/c4
+          brew style --cask miyorgi/tap/c4
+          brew install --cask miyorgi/tap/c4
+      - name: Check CLI and bundled skill setup
+        run: |
+          miyorgi --version
+          project=$(mktemp -d)
+          trap 'rm -rf "$project"' EXIT
+          miyorgi c4 setup --agent codex --project "$project"
+          miyorgi c4 setup --agent claude --project "$project"
+          test -f "$project/.agents/skills/c4/SKILL.md"
+          test -f "$project/.claude/skills/c4/SKILL.md"
+      - name: Check uninstall
+        run: |
+          brew uninstall --cask miyorgi/tap/c4
+          test ! -e "$(brew --prefix)/bin/miyorgi"
