@@ -20,6 +20,7 @@ jobs:
         run: |
           brew tap miyorgi/tap "$GITHUB_WORKSPACE"
           git -C "$(brew --repository miyorgi/tap)" checkout "$GITHUB_SHA"
+          brew trust --cask miyorgi/tap/c4
           brew audit --cask miyorgi/tap/c4
           brew style --cask miyorgi/tap/c4
           brew install --cask miyorgi/tap/c4
