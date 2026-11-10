@@ -1,0 +1,20 @@
+name: Diagnose download access
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  download:
+    runs-on: macos-15
+    steps:
+      - name: Inspect public download response
+        run: |
+          url='https://downloads.miyorgi.com/c4/0.1.0-beta.2/miyorgi-c4-0.1.0-beta.2-darwin-arm64.zip'
+          code=$(curl --silent --show-error --dump-header /tmp/headers --output /tmp/archive --write-out '%{http_code}' "$url")
+          cat /tmp/headers
+          echo "HTTP status: $code"
+          if [ "$code" != 200 ]; then
+            head -c 1500 /tmp/archive
+            exit 1
+          fi
+          echo '22c94d12ec3503df174d7e3ece299d934823406bdce02f0d9dfc62605288033f  /tmp/archive' | shasum -a 256 -c -
