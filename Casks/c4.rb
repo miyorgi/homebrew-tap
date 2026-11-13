@@ -1,11 +1,11 @@
 cask "c4" do
   arch arm: "arm64", intel: "amd64"
 
-  version "0.1.0-beta.2"
-  sha256 arm:   "22c94d12ec3503df174d7e3ece299d934823406bdce02f0d9dfc62605288033f",
-         intel: "14c9ed4a0f5c7bbda54e4a12555e740277b2354b5257123d2a4ee9c38da74496"
+  version "0.1.0-beta.4"
+  sha256 arm:   "0efb2e8952a503d6bf4a44168b59874b8ed2533ebb1a8aff5082c4c282469f2d",
+         intel: "6b906091a24af663a9dbb9c12788bb01f6adb0ab1fa20c7e7fb2053911feea1f"
 
-  url "https://downloads.miyorgi.com/c4/#{version}/miyorgi-c4-#{version}-darwin-#{arch}.zip"
+  url "https://downloads.miyorgi.com/c4/#{version}/miyorgi-c4-#{version}-darwin-#{arch}.zip?download=1"
   name "Miyorgi C4"
   desc "Model software architecture and preview C4 diagrams"
   homepage "https://miyorgi.com/c4/"
