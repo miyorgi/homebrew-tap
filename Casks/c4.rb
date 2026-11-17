@@ -1,9 +1,9 @@
 cask "c4" do
   arch arm: "arm64", intel: "amd64"
 
-  version "0.1.0-beta.6"
-  sha256 arm:   "3ea30068c478fbcdfc5e9897695360e7c8c70c822d8ff616c6f6f3838dac0bee",
-         intel: "2b159724bf0c4754e545250a616ba879222343e6f9c4cb625932c8ce326c6ab1"
+  version "0.1.0-beta.7"
+  sha256 arm:   "9712cbe060c597e043d18e0bebaec950ce8cccd2fe0cc43d43be4bc33acbb3b2",
+         intel: "177d89c0ff364d3c847e92f9e650426805c5d6ea307c7d0e40b8994066a7f5fa"
 
   url "https://downloads.miyorgi.com/c4/#{version}/miyorgi-c4-#{version}-darwin-#{arch}.zip"
   name "Miyorgi C4"
